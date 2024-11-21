@@ -6,6 +6,7 @@ import HomeScreen from "./screens/HomeScreen";
 import RecordScreen from "./screens/RecordScreen";
 import SettingsScreen from "./screens/SettingsScreen";
 import { AudioProvider } from "./context/AudioContext";
+import { LoginScreen } from "./screens/LoginScreen";
 import { Audio } from "expo-av";
 
 const Stack = createStackNavigator();
@@ -35,6 +36,13 @@ const App = () => {
     <AudioProvider>
       <NavigationContainer>
         <Stack.Navigator>
+          
+        <Stack.Screen 
+            name="Login" 
+            component={LoginScreen} 
+            options={{ headerShown: false }}
+          />
+
           <Stack.Screen
             name="Home"
             component={HomeScreen}
