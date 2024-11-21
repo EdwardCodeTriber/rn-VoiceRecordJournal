@@ -8,6 +8,7 @@ import SettingsScreen from "./screens/SettingsScreen";
 import { AudioProvider } from "./context/AudioContext";
 import { LoginScreen } from "./screens/LoginScreen";
 import { Audio } from "expo-av";
+import { RegistrationScreen } from "./screens/RegistrationScreen";
 
 const Stack = createStackNavigator();
 
@@ -36,13 +37,17 @@ const App = () => {
     <AudioProvider>
       <NavigationContainer>
         <Stack.Navigator>
-          
+
         <Stack.Screen 
             name="Login" 
             component={LoginScreen} 
             options={{ headerShown: false }}
           />
-
+          <Stack.Screen 
+            name="Registration" 
+            component={RegistrationScreen} 
+            options={{ headerShown: false }}
+          />
           <Stack.Screen
             name="Home"
             component={HomeScreen}
