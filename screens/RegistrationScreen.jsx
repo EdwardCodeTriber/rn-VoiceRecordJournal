@@ -5,7 +5,8 @@ import {
   TextInput, 
   TouchableOpacity, 
   StyleSheet,
-  Alert
+  Alert,
+  SafeAreaView
 } from 'react-native';
 
 export const RegistrationScreen = ({ navigation }) => {
@@ -36,7 +37,8 @@ export const RegistrationScreen = ({ navigation }) => {
   };
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
+      <View >
       <Text style={styles.title}>Register</Text>
       <TextInput
         style={styles.input}
@@ -74,7 +76,47 @@ export const RegistrationScreen = ({ navigation }) => {
         </Text>
       </TouchableOpacity>
     </View>
+    </SafeAreaView>
+    
   );
 };
 
-
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: "center",
+    padding: 20,
+    backgroundColor: "#030712",
+  },
+  title: {
+    fontSize: 24,
+    fontWeight: "bold",
+    marginBottom: 20,
+    textAlign: "center",
+    color: "#f8fafc",
+  },
+  input: {
+    height: 50,
+    borderColor: "#ddd",
+    borderWidth: 1,
+    marginBottom: 15,
+    paddingHorizontal: 15,
+    borderRadius: 5,
+    color: "#f8fafc",
+  },
+  button: {
+    backgroundColor: "#007BFF",
+    padding: 15,
+    borderRadius: 5,
+    alignItems: "center",
+  },
+  buttonText: {
+    color: "white",
+    fontWeight: "bold",
+  },
+  linkText: {
+    marginTop: 15,
+    textAlign: "center",
+    color: "#007BFF",
+  },
+});
