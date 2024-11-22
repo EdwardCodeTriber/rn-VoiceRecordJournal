@@ -56,4 +56,4 @@ A React Native-based mobile application for recording, managing, and playing voi
    ```bash
    git clone https://github.com/your-repository-name.git
    cd your-repository-name
-2. 
+2. npm install 

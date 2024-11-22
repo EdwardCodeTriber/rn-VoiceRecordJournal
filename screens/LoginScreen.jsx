@@ -7,10 +7,12 @@ import {
   StyleSheet,
   SafeAreaView,
 } from "react-native";
+import { useAuth } from "../context/AuthContext";
 
 export const LoginScreen = ({ navigation }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const { signIn } = useAuth();
 
   const handleLogin = async () => {
     // Validate inputs
@@ -19,11 +21,24 @@ export const LoginScreen = ({ navigation }) => {
       return;
     }
 
+    setIsLoading(true);
     try {
-      // Navigate to home or dashboard
+      await signIn(email, password);
       navigation.navigate("Home");
     } catch (error) {
-      Alert.alert("Login Failed", error.message);
+      let errorMessage = "Login failed";
+
+      if (error.code === "auth/invalid-email") {
+        errorMessage = "Invalid email address";
+      } else if (error.code === "auth/user-not-found") {
+        errorMessage = "No account found with this email";
+      } else if (error.code === "auth/wrong-password") {
+        errorMessage = "Invalid password";
+      }
+
+      Alert.alert("Error", errorMessage);
+    } finally {
+      setIsLoading(false);
     }
   };
 
