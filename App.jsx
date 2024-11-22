@@ -9,6 +9,7 @@ import { AudioProvider } from "./context/AudioContext";
 import { LoginScreen } from "./screens/LoginScreen";
 import { Audio } from "expo-av";
 import { RegistrationScreen } from "./screens/RegistrationScreen";
+import { AuthProvider } from "./context/AuthContext";
 
 const Stack = createStackNavigator();
 
@@ -34,7 +35,8 @@ const App = () => {
   }, []);
 
   return (
-    <AudioProvider>
+    <AuthProvider>
+       {/* <AudioProvider> */}
       <NavigationContainer>
         <Stack.Navigator>
 
@@ -67,7 +69,9 @@ const App = () => {
           />
         </Stack.Navigator>
       </NavigationContainer>
-    </AudioProvider>
+    {/* </AudioProvider> */}
+    </AuthProvider>
+   
   );
 };
 
