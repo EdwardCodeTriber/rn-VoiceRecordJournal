@@ -7,6 +7,7 @@ import {
   StyleSheet,
   Alert,
   SafeAreaView,
+  ActivityIndicator,
 } from "react-native";
 import { useAuth } from "../context/AuthContext";
 
@@ -14,6 +15,7 @@ export const RegistrationScreen = ({ navigation }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
   const { signUp } = useAuth();
 
   const handleRegistration = async () => {
@@ -67,6 +69,7 @@ export const RegistrationScreen = ({ navigation }) => {
           onChangeText={setEmail}
           keyboardType="email-address"
           autoCapitalize="none"
+          editable={!isLoading}
         />
         <TextInput
           style={styles.input}
@@ -74,6 +77,7 @@ export const RegistrationScreen = ({ navigation }) => {
           value={password}
           onChangeText={setPassword}
           secureTextEntry
+          editable={!isLoading}
         />
         <TextInput
           style={styles.input}
@@ -81,11 +85,23 @@ export const RegistrationScreen = ({ navigation }) => {
           value={confirmPassword}
           onChangeText={setConfirmPassword}
           secureTextEntry
+          editable={!isLoading}
         />
-        <TouchableOpacity style={styles.button} onPress={handleRegistration}>
-          <Text style={styles.buttonText}>Register</Text>
+        <TouchableOpacity 
+          style={[styles.button, isLoading && styles.buttonDisabled]} 
+          onPress={handleRegistration}
+          disabled={isLoading}
+        >
+          {isLoading ? (
+            <ActivityIndicator color="white" />
+          ) : (
+            <Text style={styles.buttonText}>Register</Text>
+          )}
         </TouchableOpacity>
-        <TouchableOpacity onPress={() => navigation.navigate("Login")}>
+        <TouchableOpacity 
+          onPress={() => navigation.navigate("Login")}
+          disabled={isLoading}
+        >
           <Text style={styles.linkText}>Already have an account? Login</Text>
         </TouchableOpacity>
       </View>
@@ -115,12 +131,16 @@ const styles = StyleSheet.create({
     paddingHorizontal: 15,
     borderRadius: 5,
     color: "#f8fafc",
+    backgroundColor: "transparent",
   },
   button: {
     backgroundColor: "#007BFF",
     padding: 15,
     borderRadius: 5,
     alignItems: "center",
+  },
+  buttonDisabled: {
+    backgroundColor: "#007BFF80",
   },
   buttonText: {
     color: "white",
