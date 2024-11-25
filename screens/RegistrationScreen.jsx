@@ -38,7 +38,7 @@ export const RegistrationScreen = ({ navigation }) => {
     setIsLoading(true);
     try {
       await signUp(email, password);
-      navigation.navigate("Home");
+      navigation.navigate("Login");
     } catch (error) {
       let errorMessage = "Registration failed";
 
