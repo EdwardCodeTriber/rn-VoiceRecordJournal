@@ -36,7 +36,7 @@ const App = () => {
 
   return (
     <AuthProvider>
-       {/* <AudioProvider> */}
+       <AudioProvider>
       <NavigationContainer>
         <Stack.Navigator>
 
@@ -69,7 +69,7 @@ const App = () => {
           />
         </Stack.Navigator>
       </NavigationContainer>
-    {/* </AudioProvider> */}
+    </AudioProvider>
     </AuthProvider>
    
   );
