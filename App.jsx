@@ -11,6 +11,7 @@ import { Audio } from "expo-av";
 import { RegistrationScreen } from "./screens/RegistrationScreen";
 import { AuthProvider } from "./context/AuthContext";
 import { ProfileScreen } from "./screens/ProfileScreen";
+import { SplashScreen } from "./screens/SplashScreen";
 
 const Stack = createStackNavigator();
 
@@ -37,55 +38,62 @@ const App = () => {
 
   return (
     <AuthProvider>
-       <AudioProvider>
-      <NavigationContainer>
-        <Stack.Navigator>
-
-        <Stack.Screen 
-            name="Login" 
-            component={LoginScreen} 
-            options={{ headerShown: false }}
-          />
-          <Stack.Screen 
-            name="Registration" 
-            component={RegistrationScreen} 
-            options={{ headerShown: false }}
-          />
-          <Stack.Screen
-            name="Home"
-            component={HomeScreen}
-            options={{ title: "Voice Notes" }}
-            style={styles.header}
-          />
-          <Stack.Screen
-            name="Record"
-            component={RecordScreen}
-            options={{ title: "Record Note" }}
-          />
-          <Stack.Screen
-            name="Settings"
-            component={SettingsScreen}
-            options={{ title: "Settings" }}
-            style={styles.headerButton}
-          />
-          <Stack.Screen 
-          name="Profile"
-          component={ProfileScreen}
-          options={{headerShown: false}}
-          />
-        </Stack.Navigator>
-      </NavigationContainer>
-    </AudioProvider>
+      <AudioProvider>
+        <NavigationContainer>
+          <Stack.Navigator
+            initialRouteName="Splash"
+            screenOptions={{
+              headerShown: false,
+              animation: "fade",
+            }}
+          >
+            <Stack.Screen name="Splash" 
+            component={SplashScreen}
+             />
+            <Stack.Screen
+              name="Login"
+              component={LoginScreen}
+              options={{ headerShown: false }}
+            />
+            <Stack.Screen
+              name="Registration"
+              component={RegistrationScreen}
+              options={{ headerShown: false }}
+            />
+            <Stack.Screen
+              name="Home"
+              component={HomeScreen}
+              options={{ title: "Voice Notes" }}
+              style={styles.header}
+            />
+            <Stack.Screen
+              name="Record"
+              component={RecordScreen}
+              options={{ title: "Record Note" }}
+            />
+            <Stack.Screen
+              name="Settings"
+              component={SettingsScreen}
+              options={{ title: "Settings" }}
+              style={styles.headerButton}
+            />
+            <Stack.Screen
+              name="Profile"
+              component={ProfileScreen}
+              options={{ headerShown: false }}
+            />
+          </Stack.Navigator>
+        </NavigationContainer>
+      </AudioProvider>
     </AuthProvider>
-   
   );
 };
 
 const styles = StyleSheet.create({
   header: {
     backgroundColor: "#020617", // Primary color
-    elevation: 0, 
-    shadowOpacity: 0, 
+    elevation: 0,
+    shadowOpacity: 0,
   },
   headerTitle: {
     color: "#FFFFFF",
