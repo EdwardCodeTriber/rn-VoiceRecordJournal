@@ -6,12 +6,15 @@ import {
   TouchableOpacity,
   StyleSheet,
   SafeAreaView,
+  ActivityIndicator,
+  Alert,
 } from "react-native";
 import { useAuth } from "../context/AuthContext";
 
 export const LoginScreen = ({ navigation }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
   const { signIn } = useAuth();
 
   const handleLogin = async () => {
@@ -53,6 +56,7 @@ export const LoginScreen = ({ navigation }) => {
           onChangeText={setEmail}
           keyboardType="email-address"
           autoCapitalize="none"
+          editable={!isLoading}
         />
         <TextInput
           style={styles.input}
@@ -60,11 +64,23 @@ export const LoginScreen = ({ navigation }) => {
           value={password}
           onChangeText={setPassword}
           secureTextEntry
+          editable={!isLoading}
         />
-        <TouchableOpacity style={styles.button} onPress={handleLogin}>
-          <Text style={styles.buttonText}>Login</Text>
+        <TouchableOpacity 
+          style={[styles.button, isLoading && styles.buttonDisabled]} 
+          onPress={handleLogin}
+          disabled={isLoading}
+        >
+          {isLoading ? (
+            <ActivityIndicator color="white" />
+          ) : (
+            <Text style={styles.buttonText}>Login</Text>
+          )}
         </TouchableOpacity>
-        <TouchableOpacity onPress={() => navigation.navigate("Registration")}>
+        <TouchableOpacity 
+          onPress={() => navigation.navigate("Registration")}
+          disabled={isLoading}
+        >
           <Text style={styles.linkText}>Don't have an account? Register</Text>
         </TouchableOpacity>
       </View>
@@ -94,12 +110,16 @@ const styles = StyleSheet.create({
     paddingHorizontal: 15,
     borderRadius: 5,
     color: "#f8fafc",
+    backgroundColor: "transparent",
   },
   button: {
     backgroundColor: "#007BFF",
     padding: 15,
     borderRadius: 5,
     alignItems: "center",
+  },
+  buttonDisabled: {
+    backgroundColor: "#007BFF80", 
   },
   buttonText: {
     color: "white",
