@@ -40,15 +40,14 @@ const App = () => {
     <AuthProvider>
       <AudioProvider>
         <NavigationContainer>
-          <Stack.Navigator
+          <Stack.Navigator>
+            <Stack.Screen name="Splash" 
+            component={SplashScreen}
             initialRouteName="Splash"
             screenOptions={{
               headerShown: false,
               animation: "fade",
             }}
-          >
-            <Stack.Screen name="Splash" 
-            component={SplashScreen}
              />
             <Stack.Screen
               name="Login"
