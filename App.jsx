@@ -10,6 +10,7 @@ import { LoginScreen } from "./screens/LoginScreen";
 import { Audio } from "expo-av";
 import { RegistrationScreen } from "./screens/RegistrationScreen";
 import { AuthProvider } from "./context/AuthContext";
+import { ProfileScreen } from "./screens/ProfileScreen";
 
 const Stack = createStackNavigator();
 
@@ -66,6 +67,11 @@ const App = () => {
             component={SettingsScreen}
             options={{ title: "Settings" }}
             style={styles.headerButton}
+          />
+          <Stack.Screen 
+          name="Profile"
+          component={ProfileScreen}
+          options={{title:"Profile"}}
           />
         </Stack.Navigator>
       </NavigationContainer>
