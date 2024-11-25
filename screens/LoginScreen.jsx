@@ -27,6 +27,10 @@ export const LoginScreen = ({ navigation }) => {
     setIsLoading(true);
     try {
       await signIn(email, password);
+      setEmail("");
+      setPassword("");
+      let successMassage = "Login Successfully";
+      Alert.prompt(successMassage);
       navigation.navigate("Home");
     } catch (error) {
       let errorMessage = "Login failed";
@@ -66,8 +70,8 @@ export const LoginScreen = ({ navigation }) => {
           secureTextEntry
           editable={!isLoading}
         />
-        <TouchableOpacity 
-          style={[styles.button, isLoading && styles.buttonDisabled]} 
+        <TouchableOpacity
+          style={[styles.button, isLoading && styles.buttonDisabled]}
           onPress={handleLogin}
           disabled={isLoading}
         >
@@ -77,7 +81,7 @@ export const LoginScreen = ({ navigation }) => {
             <Text style={styles.buttonText}>Login</Text>
           )}
         </TouchableOpacity>
-        <TouchableOpacity 
+        <TouchableOpacity
           onPress={() => navigation.navigate("Registration")}
           disabled={isLoading}
         >
@@ -119,7 +123,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   buttonDisabled: {
-    backgroundColor: "#007BFF80", 
+    backgroundColor: "#007BFF80",
   },
   buttonText: {
     color: "white",
